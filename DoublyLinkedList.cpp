@@ -47,6 +47,9 @@ public:
     DoublyLinkedList();
     DoublyLinkedList(Node *n);
 
+    // Destructor function
+    ~DoublyLinkedList();
+
     // Operation functions
     Node *nodeExists(int k);
     void prependNode(Node *n);
@@ -74,6 +77,18 @@ DoublyLinkedList::DoublyLinkedList(Node *n)
     tail = n;
 }
 
+// Destructor function to deallocate the memory
+DoublyLinkedList::~DoublyLinkedList()
+{
+    Node *temp;
+    while (head != NULL)
+    {
+        temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 Node *DoublyLinkedList::nodeExists(int k)
 {
     Node *ptr = head;
@@ -88,7 +103,23 @@ Node *DoublyLinkedList::nodeExists(int k)
     }
     return temp;
 }
+
 void DoublyLinkedList::prependNode(Node *n)
+{
+    // Input validation to make sure the key is unique
+    if (nodeExists(n->key) != NULL)
+    {
+        cout << "Node with the same key already exists in the list! \n";
+    }
+    else
+    {
+        n->next = head;
+        head->prev = n;
+        head = n;
+    }
+}
+
+void DoublyLinkedList::appendNode(Node *n)
 {
     // Input validation to make sure the key is unique
     if (nodeExists(n->key) != NULL)
@@ -104,7 +135,6 @@ void DoublyLinkedList::prependNode(Node *n)
         }
         else
         {
-
             // Traversing to the end of the list
             Node *ptr = head;
             while (ptr->next != NULL)
@@ -118,10 +148,100 @@ void DoublyLinkedList::prependNode(Node *n)
         }
     }
 }
+void DoublyLinkedList::insertNodeAfter(int k, Node *n)
+{
+    // Input validation to make sure the key is unique
+    if (nodeExists(n->key) != NULL)
+    {
+        cout << "Node with the same key already exists in the list! \n";
+    }
+    else
+    {
+        // Input validation to make sure the key entered by user exists in the list
+        if (nodeExists(k) == NULL)
+        {
+            cout << "Node with the key entered does not exisit! \n";
+        }
+        else
+        {
+            Node *ptr = head;
+            while (ptr->key != k)
+            {
+                ptr = ptr->next;
+            }
+            n->next = ptr->next;
+            ptr->next = n;
+            n->prev = ptr;
+        }
+    }
+}
+void DoublyLinkedList::deleteNode(int k)
+{
+    Node *target = nodeExists(k);
+    // Input validation to make sure the key entered by user exists in the list
+    if (target == NULL)
+    {
+        cout << "Node with the key entered does not exisit! \n";
+    }
+    else if (target == head)
+    {
+        head = target->next;
+        target->next->prev = NULL;
+        delete target;
+    }
+
+    else
+    {
+        target->prev->next = target->next;
+        target->next->prev = target->prev;
+    }
+}
+
+void DoublyLinkedList::printList()
+{
+    Node *ptr = head;
+    if (head == NULL)
+    {
+        cout << "The linked list is empty \n";
+    }
+    else
+    {
+        while (ptr != NULL)
+        {
+            cout << ptr->data << " <==> ";
+            ptr = ptr->next;
+        }
+        cout << "\n";
+    }
+}
 
 // Main function for testing
 int main()
 {
     cout << "This is a doubly linked list \n";
+
+    // Creating nodes
+    Node *n1 = new Node(1, 10);
+    Node *n2 = new Node(2, 20);
+    Node *n3 = new Node(3, 30);
+    Node *n4 = new Node(4, 40);
+    Node *n5 = new Node(0, 0);
+    Node *n6 = new Node(6, 6);
+
+    DoublyLinkedList d(n1);
+    d.appendNode(n2);
+    d.appendNode(n3);
+    d.appendNode(n4);
+    d.prependNode(n5);
+
+    d.printList();
+
+    d.insertNodeAfter(0, n6);
+    d.printList();
+    d.deleteNode(0);
+    d.printList();
+    //d.deleteNode(1);
+    //d.printList();
+
     return 0;
 }
