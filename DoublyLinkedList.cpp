@@ -175,6 +175,7 @@ void DoublyLinkedList::insertNodeAfter(int k, Node *n)
         }
     }
 }
+// Needs some fixing
 void DoublyLinkedList::deleteNode(int k)
 {
     Node *target = nodeExists(k);
@@ -194,6 +195,18 @@ void DoublyLinkedList::deleteNode(int k)
     {
         target->prev->next = target->next;
         target->next->prev = target->prev;
+    }
+}
+void DoublyLinkedList::updateNode(int k, int d)
+{
+    Node *target = nodeExists(k);
+    if (target == NULL)
+    {
+        cout << "Node with the key entered does not exisit! \n";
+    }
+    else
+    {
+        target->data = d;
     }
 }
 
@@ -233,15 +246,17 @@ int main()
     d.appendNode(n3);
     d.appendNode(n4);
     d.prependNode(n5);
-
     d.printList();
 
     d.insertNodeAfter(0, n6);
     d.printList();
     d.deleteNode(0);
     d.printList();
-    //d.deleteNode(1);
-    //d.printList();
+    d.updateNode(3, 700);
+    d.printList();
+
+    // d.deleteNode(1);
+    // d.printList();
 
     return 0;
 }
