@@ -43,6 +43,9 @@ public:
     SinglyLinkedList();
     SinglyLinkedList(Node *n);
 
+    //  Destructor function
+    ~SinglyLinkedList();
+
     // Operation functions
     Node *nodeExists(int k);
     void prependNode(Node *n);
@@ -69,6 +72,19 @@ SinglyLinkedList::SinglyLinkedList(Node *n)
 {
     head = n;
 }
+// Destructor function
+SinglyLinkedList::~SinglyLinkedList()
+{
+    Node *ptr = head;
+    Node *temp;
+    while (ptr != NULL)
+    {
+        temp = ptr;
+        ptr = ptr->next;
+        delete temp;
+    }
+}
+
 // Method to find a node with key 'k'
 Node *SinglyLinkedList::nodeExists(int k)
 {
