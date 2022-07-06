@@ -21,7 +21,52 @@ public:
 class Graph
 {
 public:
+    // Head and Tail pointers
+    Node *head;
+    Node *tail;
+
+    // Constructor functions
+    Graph();
+    Graph(Node *n);
+
+    // Destructor function
+    ~Graph();
+
+    // Operation functions
+    Node *nodeExists(int k);
+    void prependNode(Node *n);
+    void appendNode(Node *n);
+    void insertNodeAfter(int k, Node *n);
+    void deleteNode(int k);
+    void updateNode(int k, int d);
 };
+
+// Default constructor
+Node::Node()
+{
+    key = 0;
+    data = 0;
+}
+
+// Parameterised Constructor (Function overloading)
+Node::Node(int k, int d)
+{
+    key = k;
+    data = d;
+}
+// Default constructor
+Graph::Graph()
+{
+    head = NULL;
+    tail = NULL;
+}
+
+// Parameterised Constructor (Function overloading)
+Graph::Graph(Node *n)
+{
+    head = n;
+    tail = n;
+}
 
 int main()
 {

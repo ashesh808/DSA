@@ -29,6 +29,18 @@ class Tree
 {
 public:
     Node *root;
+    // Constructor functions
+    Tree();
+    Tree(Node *n);
+
+    // Destructor function
+    ~Tree();
+
+    // Operation functions
+    Node *nodeExists(int k);
+    void insertNode(Node *n);
+    void deleteNode(int k);
+    void updateNode(int k, int d);
 };
 
 int main()
