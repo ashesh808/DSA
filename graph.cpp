@@ -1,74 +1,49 @@
 // Including the required headers
 #include <iostream>
+#include <vector>
+#include <list>
+#include <string>
+#include <algorithm>
 using namespace std;
 
-// This class represents the node of a graph
-class Node
+class Edge
 {
 public:
-    // Data memebers of a node are:
-    //  1. Key : which is used for finding and updating each node will have a unique key
-    //  2. Data : which is the actual value contained in the node
-    int key;
-    int data;
-
-    // Constructor methods
-    Node();
-    Node(int k, int d);
+    int DestinationVertexID;
+    int weight;
 };
 
-// This class to represent the data structure Graph
+class Vertex
+{
+public:
+    int state_id;
+    string  state_name;
+    list<Edge> edgeList;
+};
+
 class Graph
 {
 public:
-    // Head and Tail pointers
-    Node *head;
-    Node *tail;
+    vector<Vertex> vertices;
 
-    // Constructor functions
+    void addVertex(int id, string name)
+    {
+        Vertex v;
+        v.state_id = id;
+        v.state_name = name;
+        vertices.push_back(v);
+    }
     Graph();
-    Graph(Node *n);
+    void printGraph();
 
-    // Destructor function
-    ~Graph();
-
-    // Operation functions
-    Node *nodeExists(int k);
-    void prependNode(Node *n);
-    void appendNode(Node *n);
-    void insertNodeAfter(int k, Node *n);
-    void deleteNode(int k);
-    void updateNode(int k, int d);
+    //Search Algorithms
+    void DFS(int src);
+    void BFS(int src);
 };
 
-// Default constructor
-Node::Node()
-{
-    key = 0;
-    data = 0;
-}
-
-// Parameterised Constructor (Function overloading)
-Node::Node(int k, int d)
-{
-    key = k;
-    data = d;
-}
-// Default constructor
-Graph::Graph()
-{
-    head = NULL;
-    tail = NULL;
-}
-
-// Parameterised Constructor (Function overloading)
-Graph::Graph(Node *n)
-{
-    head = n;
-    tail = n;
-}
 
 int main()
 {
+   
     return 0;
 }
