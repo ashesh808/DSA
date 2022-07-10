@@ -5,7 +5,7 @@ using namespace std;
 // This class represents the node of a linked list
 class Node
 {
-public:
+private:
     // Data memebers of a node are:
     //  1. Key : which is used for finding and updating each node will have a unique key
     //  2. Data : which is the actual value contained in the node
@@ -13,10 +13,16 @@ public:
     int key;
     int data;
     Node *next; // Pointer of the data type "Node"
-
+public:
     // Constructor methods
     Node();
     Node(int k, int d);
+    int getKey();
+    int getData();
+    Node *getNext();
+    void setKey(int k);
+    void setData(int d);
+    void setNext(Node *n);
 };
 // Default constructor
 Node::Node()
@@ -30,6 +36,30 @@ Node::Node(int k, int d)
 {
     key = k;
     data = d;
+}
+int Node::getKey()
+{
+    return key;
+}
+int Node::getData()
+{
+    return data;
+}
+Node *Node::getNext()
+{
+    return next;
+}
+void Node::setKey(int k)
+{
+    key = k;
+}
+void Node::setData(int d)
+{
+    data = d;
+}
+void Node::setNext(Node *n)
+{
+    next = n;
 }
 
 // Singly linked list class will essentially link all the nodes and will make it possiable for us to perform operations on them

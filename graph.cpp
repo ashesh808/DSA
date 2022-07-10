@@ -3,7 +3,7 @@
 #include <vector>
 #include <list>
 #include <string>
-#include <algorithm>
+#include <iterator>
 using namespace std;
 
 class Edge
