@@ -110,7 +110,7 @@ SinglyLinkedList::~SinglyLinkedList()
     while (ptr != NULL)
     {
         temp = ptr;
-        ptr = ptr->next;
+        ptr = ptr->getNext();
         delete temp;
     }
 }
@@ -122,18 +122,18 @@ Node *SinglyLinkedList::nodeExists(int k)
     Node *ptr = head;
     while (ptr != NULL)
     {
-        if (ptr->key == k)
+        if (ptr->getKey() == k)
         {
             temp = ptr;
         }
-        ptr = ptr->next;
+        ptr = ptr->getNext();
     }
     return temp;
 }
 // Method  to append a node to the singly linked list
 void SinglyLinkedList::appendNode(Node *n)
 {
-    if (nodeExists(n->key) != NULL)
+    if (nodeExists(n->getKey()) != NULL)
     {
         cout << "Node with the same key value already exist!" << endl;
     }
@@ -146,12 +146,12 @@ void SinglyLinkedList::appendNode(Node *n)
         else
         {
             Node *ptr = head;
-            while (ptr->next != NULL)
+            while (ptr->getNext() != NULL)
             {
 
-                ptr = ptr->next;
+                ptr = ptr->getNext();
             }
-            ptr->next = n;
+            ptr->setNext(n);
         }
         cout << "Node Appended" << endl;
     }
@@ -160,7 +160,7 @@ void SinglyLinkedList::appendNode(Node *n)
 // Method  to add a node to the singly linked list
 void SinglyLinkedList::addNewNode(Node *n)
 {
-    if (nodeExists(n->key) != NULL)
+    if (nodeExists(n->getKey()) != NULL)
     {
         cout << "Node with the same key value already exist!" << endl;
     }
@@ -181,15 +181,15 @@ void SinglyLinkedList::addNewNode(Node *n)
 // Method  to add a node to the singly linked list
 void SinglyLinkedList::addNode(Node *root, Node *n)
 {
-    if (root->data < n->data)
+    if (root->getData() < n->getData())
     {
-        if (root->next == NULL)
+        if (root->getNext() == NULL)
         {
-            insertNodeAfter(root->key, n); // O(n)
+            insertNodeAfter(root->getKey(), n); // O(n)
         }
         else
         {
-            root = root->next;
+            root = root->getNext();
             addNode(root, n); // Used recursion
         }
     }
