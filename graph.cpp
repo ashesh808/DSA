@@ -120,6 +120,7 @@ class Graph
 public:
     vector<Vertex> vertices;
     //All graph operations
+    void addVertex();
 };
 
 int main()
