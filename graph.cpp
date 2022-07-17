@@ -119,12 +119,30 @@ class Graph
 {
 public:
     vector<Vertex> vertices;
-    //All graph operations
-    void addVertex();
+    // All graph operations
+    bool checkIfVertexExists(int vid);
+    void addVertex(Vertex *newVertex);
 };
+
+//Fuction to check if a vertex exists with a certian id
+bool *Graph::checkIfVertexExists(int vid)
+{
+    for (int i = 0; i < vertices.size; i++)
+    {
+        if (vertices.at(i) == vid)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Graph::addVertex(Vertex *newVertex)
+{
+}
 
 int main()
 {
-    
+
     return 0;
 }
