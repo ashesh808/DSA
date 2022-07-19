@@ -129,7 +129,7 @@ bool Graph::checkIfVertexExists(int vid)
 {
 
 }
-
+//Function to add vertex to the graph
 void Graph::addVertex(Vertex *newVertex)
 {
 }
