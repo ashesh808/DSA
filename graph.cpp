@@ -124,14 +124,27 @@ public:
     void addVertex(Vertex *newVertex);
 };
 
-//Fuction to check if a vertex exists with a certian id
+// Fuction to check if a vertex exists with a certian id
 bool Graph::checkIfVertexExists(int vid)
 {
-
+    for (int i = 0; i < vertices.size(); i++)
+    {
+        if (vertices.at(i).state_id == vid)
+        {
+            return true;
+        }
+    }
 }
-//Function to add vertex to the graph
+// Function to add vertex to the graph
 void Graph::addVertex(Vertex *newVertex)
 {
+    if (checkIfVertexExists(newVertex->state_id))
+    {
+        cout << "Vertex with the same state id already exists";
+    }
+    else
+    {
+    }
 }
 
 int main()
