@@ -43,6 +43,13 @@ public:
     void updateNode(int k, int d);
 };
 
+Node *Tree::nodeExists(int k)
+{
+    if (k == root->key)
+    {
+        return root;
+    }
+}
 int main()
 {
     return 0;
