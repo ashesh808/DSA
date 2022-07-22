@@ -49,6 +49,10 @@ Node *Tree::nodeExists(int k)
     {
         return root;
     }
+    else
+    {
+        return NULL;
+    }
 }
 int main()
 {
