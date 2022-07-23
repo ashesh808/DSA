@@ -41,20 +41,52 @@ public:
     void insertNode(Node *n);
     void deleteNode(int k);
     void updateNode(int k, int d);
+    void printTree();
 };
 
 Node *Tree::nodeExists(int k)
 {
-    if (k == root->key)
+    if(root == NULL || root->key == k)
     {
         return root;
     }
     else
     {
-        return NULL;
+        
     }
+}
+void Tree::insertNode(Node *n)
+{
+    if (root == NULL)
+    {
+        root = n;
+    }
+    else
+    {
+        while (root->leftChild != NULL)
+        {
+            
+        }
+        
+        
+    }
+    
+}
+void Tree::printTree()
+{
+    Node* ptr = root;
+    while (ptr != NULL)
+    {
+        cout << ptr->data << "\n";
+        ptr = ptr->leftChild;
+    }
+    
 }
 int main()
 {
+    Tree test;
+    Node* root = new Node(1,1);
+    test.insertNode(root);
+    test.printTree();
     return 0;
 }
