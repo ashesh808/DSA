@@ -134,6 +134,7 @@ bool Graph::checkIfVertexExists(int vid)
             return true;
         }
     }
+    return false;
 }
 // Function to add vertex to the graph
 void Graph::addVertex(Vertex *newVertex)
@@ -144,6 +145,7 @@ void Graph::addVertex(Vertex *newVertex)
     }
     else
     {
+        
     }
 }
 
