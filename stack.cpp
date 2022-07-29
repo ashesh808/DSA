@@ -14,11 +14,11 @@ public:
     int key;
     int data;
     Node *next; // Pointer of the data type "Node"
-
     // Constructor methods
     Node();
     Node(int k, int d);
 };
+
 Node::Node()
 {
     key = 0;
@@ -66,13 +66,13 @@ void Stack::push(int n)
 {
     if (head == NULL)
     {
-        head->key = 1;
-        head->data = n;
+        Node *newNode = new Node(1, n);
+        head = newNode;
     }
     else
     {
         Node *ptr = head;
-        while (ptr != NULL)
+        while (ptr->next != NULL)
         {
             ptr = ptr->next;
         }
@@ -83,8 +83,8 @@ void Stack::push(int n)
 int Stack::pop()
 {
     int val;
-     Node* ptr = head;
-    while (ptr->next != NULL)
+    Node *ptr = head;
+    while (ptr->next->next != NULL)
     {
         ptr = ptr->next;
     }
@@ -94,11 +94,12 @@ int Stack::pop()
 }
 void Stack::print()
 {
-    Node* ptr = head;
+    Node *ptr = head;
     cout << "\n";
     while (ptr != NULL)
     {
         cout << ptr->data << " ---> ";
+        ptr = ptr->next;
     }
     cout << "\n";
 }
@@ -106,10 +107,13 @@ void Stack::print()
 int main()
 {
     Stack s1;
-    for (int i = 0; i < 10; i++)
-    {
-        s1.push(i);
-    }
+    s1.push(1);
+    s1.push(2);
     s1.print();
+    int poped = s1.pop();
+    cout << "\n";
+    cout << poped << " value has been removed!";
+    s1.print();
+
     return 0;
 }

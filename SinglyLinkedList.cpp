@@ -195,14 +195,14 @@ void SinglyLinkedList::addNode(Node *root, Node *n)
     }
     else
     {
-        insertNodeBefore(root->key, n); // Best : O(1), Worst : O(n)
+        insertNodeBefore(root->getKey(), n); // Best : O(1), Worst : O(n)
     }
 }
 
 // Method  to insert a node to the singly linked list
 void SinglyLinkedList::prependNode(Node *n)
 {
-    n->next = head;
+    n->setNext(head);
     head = n;
 }
 
@@ -210,7 +210,7 @@ void SinglyLinkedList::prependNode(Node *n)
 void SinglyLinkedList::insertNodeAfter(int k, Node *n)
 {
     // Checking if the new node's key is already in use by  a previous node
-    if (nodeExists(n->key) != NULL)
+    if (nodeExists(n->getKey()) != NULL)
     {
         cout << "Node with the same key value already exist!" << endl;
     }
@@ -226,9 +226,9 @@ void SinglyLinkedList::insertNodeAfter(int k, Node *n)
             // The address of the node whose's key is given by the user is stored in target pointer
             Node *target = nodeExists(k);
             // The next pointer of the new node will point to the node next to the targeted node
-            n->next = target->next;
+            n->setNext(target->getNext());
             // The next pointer of the targeted node will point to the new node
-            target->next = n;
+            target->setNext(n);
         }
     }
 }
@@ -237,7 +237,7 @@ void SinglyLinkedList::insertNodeAfter(int k, Node *n)
 void SinglyLinkedList::insertNodeBefore(int k, Node *n)
 {
     // Checking if the new node's key is already in use by  a previous node
-    if (nodeExists(n->key) != NULL)
+    if (nodeExists(n->getKey()) != NULL)
     {
         cout << "Node with the same key value already exist!" << endl;
     }
@@ -264,17 +264,17 @@ void SinglyLinkedList::insertNodeBefore(int k, Node *n)
             Node *ptr = head;
             while (ptr != NULL)
             {
-                if (ptr->next == target)
+                if (ptr->getKey() == target->getKey())
                 {
                     prev = ptr;
                 }
-                ptr = ptr->next;
+                ptr->setNext(ptr->getNext());
             }
             // The previous node of the targeted node will point to the new node
-            prev->next = n;
+            prev->setNext(n);
 
             // The new node will point to the targeted node
-            n->next = target;
+            n->setNext(target);
         }
     }
 }
@@ -297,16 +297,16 @@ void SinglyLinkedList::deleteNode(int k)
         Node *ptr = head;
         while (ptr != NULL)
         {
-            if (ptr->next == target)
+            if (ptr->getNext() == target)
             {
                 prev = ptr;
             }
-            ptr = ptr->next;
+                ptr->setNext(ptr->getNext());
         }
         // The next of the previous node will point to the next of the targeted node
-        prev->next = target->next;
+        prev->setNext(target->getNext());
         // Erasing the next of the targeted node
-        target->next = NULL;
+        target->setNext(NULL);
     }
 }
 
@@ -323,7 +323,7 @@ void SinglyLinkedList::updateNode(int k, int d)
     else
     {
         // Updating the data of the targeted node with the user given data
-        target->data = d;
+        target->setData(d);
     }
 }
 
@@ -341,8 +341,8 @@ void SinglyLinkedList::printList()
         Node *temp = head;
         while (temp != NULL)
         {
-            cout << "(" << temp->key << " ," << temp->data << ")--> ";
-            temp = temp->next;
+            cout << "(" << temp->getKey() << " ," << temp->getData() << ")--> ";
+            temp->setNext(temp->getNext());
         }
         cout << '\n';
     }
