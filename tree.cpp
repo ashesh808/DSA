@@ -16,8 +16,8 @@ public:
     int key;
     int data;
     Node *parent;
-    Node *leftChild;
-    Node *rightChild;
+    Node *left;
+    Node *right;
 
     // Constructor methods
     Node();
@@ -37,24 +37,41 @@ public:
     ~Tree();
 
     // Operation functions
-    Node *nodeExists(int k);
+    Node* depthFirstSearch(Node* rootNode, int k);
     void insertNode(Node *n);
     void deleteNode(int k);
     void updateNode(int k, int d);
-    void printTree();
+    void print();
 };
 
-Node *Tree::nodeExists(int k)
+Tree::Tree()
 {
-    if(root == NULL || root->key == k)
+    root = NULL;
+}
+
+Tree::Tree(Node *n)
+{
+    root = n;
+}
+
+
+//Recursive function to return 
+Node *Tree::depthFirstSearch(Node* rootNode, int k)
+{
+    if(rootNode->key == k)
     {
         return root;
     }
     else
     {
-        
+        //Recurring on left subtree
+        depthFirstSearch(rootNode->left, k);
+        //Recurring on right subtree
+        depthFirstSearch(rootNode->right, k);  
     }
+    return NULL;
 }
+
 void Tree::insertNode(Node *n)
 {
     if (root == NULL)
@@ -63,30 +80,31 @@ void Tree::insertNode(Node *n)
     }
     else
     {
-        while (root->leftChild != NULL)
-        {
-            
-        }
+
         
         
     }
     
 }
-void Tree::printTree()
+void Tree::print()
 {
     Node* ptr = root;
     while (ptr != NULL)
     {
         cout << ptr->data << "\n";
-        ptr = ptr->leftChild;
+        ptr = ptr->left;
     }
     
 }
 int main()
 {
-    Tree test;
-    Node* root = new Node(1,1);
-    test.insertNode(root);
-    test.printTree();
+    Node* root = new Node(1,9);
+    Node* leftChild = new Node(2,10);
+    Node* rightChild = new Node(3,16);
+    root->left = leftChild;
+    root->right = rightChild;
+    Tree t1(root);
+    Node* search = t1.depthFirstSearch(root, 3);
+    cout << search->data << "\n";
     return 0;
 }
