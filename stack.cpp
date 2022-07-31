@@ -114,6 +114,6 @@ int main()
     cout << "\n";
     cout << poped << " value has been removed!";
     s1.print();
-
+    
     return 0;
 }
