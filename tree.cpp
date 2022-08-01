@@ -24,6 +24,19 @@ public:
     Node(int k, int d);
 };
 
+Node::Node()
+{
+    data = 0;
+    parent = NULL;
+    left = NULL;
+    right = NULL;
+}
+Node::Node(int k, int d)
+{
+    key = k;
+    data = d;
+}
+
 // This class to represent the data structure Tree
 class Tree
 {
@@ -33,11 +46,7 @@ public:
     Tree();
     Tree(Node *n);
 
-    // Destructor function
-    ~Tree();
-
     // Operation functions
-    Node* depthFirstSearch(Node* rootNode, int k);
     void insertNode(Node *n);
     void deleteNode(int k);
     void updateNode(int k, int d);
@@ -54,20 +63,19 @@ Tree::Tree(Node *n)
     root = n;
 }
 
-
-//Recursive function to return 
-Node *Tree::depthFirstSearch(Node* rootNode, int k)
+// Recursive function to return
+Node *depthFirstSearch(Node *rootNode, int k)
 {
-    if(rootNode->key == k)
+    if (rootNode->key == k)
     {
-        return root;
+        return rootNode;
     }
     else
     {
-        //Recurring on left subtree
+        // Recurring on left subtree
         depthFirstSearch(rootNode->left, k);
-        //Recurring on right subtree
-        depthFirstSearch(rootNode->right, k);  
+        // Recurring on right subtree
+        depthFirstSearch(rootNode->right, k);
     }
     return NULL;
 }
@@ -80,31 +88,31 @@ void Tree::insertNode(Node *n)
     }
     else
     {
-
-        
-        
     }
-    
 }
 void Tree::print()
 {
-    Node* ptr = root;
+    Node *ptr = root;
     while (ptr != NULL)
     {
         cout << ptr->data << "\n";
         ptr = ptr->left;
     }
-    
 }
 int main()
 {
-    Node* root = new Node(1,9);
-    Node* leftChild = new Node(2,10);
-    Node* rightChild = new Node(3,16);
+    //Creating new nodes 
+    Node *root = new Node(1, 9);
+    Node *leftChild = new Node(2, 10);
+    Node *rightChild = new Node(3, 16);
+
+    //Adding nodes as children and parents
     root->left = leftChild;
     root->right = rightChild;
-    Tree t1(root);
-    Node* search = t1.depthFirstSearch(root, 3);
-    cout << search->data << "\n";
+    leftChild->parent = root;
+    rightChild->parent = root;
+
+     Node *search = depthFirstSearch(root, 2);
+     cout << search->data << "\n";
     return 0;
 }
