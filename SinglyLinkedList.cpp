@@ -364,6 +364,14 @@ int main()
     s.addNewNode(n5);
 
     s.printList();
+    //O(n) deletion
+    s.deleteNode(5);
+    s.printList();
+    //O(1) deletion
+    s.deleteNode(1);
+    s.printList();
+
+
 
     return 0;
 }
