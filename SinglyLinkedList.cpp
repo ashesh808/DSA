@@ -297,16 +297,16 @@ void SinglyLinkedList::deleteNode(int k)
         Node *ptr = head;
         while (ptr != NULL)
         {
-            if (ptr->getNext() == target)
+            if (ptr->next == target)
             {
                 prev = ptr;
             }
-                ptr->setNext(ptr->getNext());
+                ptr = ptr->next;
         }
         // The next of the previous node will point to the next of the targeted node
-        prev->setNext(target->getNext());
+        prev->next = target->next;
         // Erasing the next of the targeted node
-        target->setNext(NULL);
+        target->next = NULL;
     }
 }
 
