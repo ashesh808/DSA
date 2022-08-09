@@ -28,13 +28,13 @@ Node::Node()
 {
     data = 0;
     parent = NULL;
-    left = NULL;
-    right = NULL;
+    left = right = NULL;
 }
 Node::Node(int k, int d)
 {
     key = k;
     data = d;
+    left = right = NULL;
 }
 
 // This class to represent the data structure Tree
@@ -64,20 +64,16 @@ Tree::Tree(Node *n)
 }
 
 // Recursive function to return
-Node *depthFirstSearch(Node *rootNode, int k)
+int depthFirstSearch(Node *rootNode, int k)
 {
-    if (rootNode->key == k)
+    if (rootNode->key == k || rootNode == NULL)
     {
-        return rootNode;
+        return rootNode->data;
     }
-    else
-    {
-        // Recurring on left subtree
-        depthFirstSearch(rootNode->left, k);
-        // Recurring on right subtree
-        depthFirstSearch(rootNode->right, k);
-    }
-    return NULL;
+    // Recurring on left subtree
+    depthFirstSearch(rootNode->left, k);
+    // Recurring on right subtree
+    depthFirstSearch(rootNode->right, k);
 }
 
 void Tree::insertNode(Node *n)
@@ -88,7 +84,6 @@ void Tree::insertNode(Node *n)
     }
     else
     {
-        
     }
 }
 void Tree::print()
@@ -100,20 +95,35 @@ void Tree::print()
         ptr = ptr->left;
     }
 }
+
+/* Given a binary tree, print its nodes in inorder*/
+void printInorder(struct Node* node)
+{
+    if (node == NULL)
+        return;
+ 
+    /* first recur on left child */
+    printInorder(node->left);
+ 
+    /* then print the data of node */
+    cout << node->data << " ";
+ 
+    /* now recur on right child */
+    printInorder(node->right);
+}
+ 
 int main()
 {
-    //Creating new nodes 
+    // Creating new nodes
     Node *root = new Node(1, 9);
-    Node *leftChild = new Node(2, 10);
-    Node *rightChild = new Node(3, 16);
+    
 
-    //Adding nodes as children and parents
-    root->left = leftChild;
-    root->right = rightChild;
-    leftChild->parent = root;
-    rightChild->parent = root;
+    // Adding nodes as children
+    root->left =  new Node(2, 10);
+    root->right = new Node(3, 16);
+    cout << "\n";
 
-     Node *search = depthFirstSearch(root, 2);
-     cout << search->data << "\n";
+   printInorder(root);
+
     return 0;
 }
