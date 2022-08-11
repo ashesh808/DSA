@@ -124,7 +124,7 @@ public:
     void addVertex(Vertex *newVertex);
 };
 
-// Fuction to check if a vertex exists with a certian id
+//Fuction to check if a vertex exists with a certian id
 bool Graph::checkIfVertexExists(int vid)
 {
     for (int i = 0; i < vertices.size(); i++)
