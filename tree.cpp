@@ -97,19 +97,22 @@ void Tree::print()
 }
 
 /* Given a binary tree, print its nodes in inorder*/
-void printInorder(struct Node* node)
+int findNode(Node* node, int k)
 {
-    if (node == NULL)
-        return;
+    if (node == NULL )
+    {
+        return  -1;
+    }
+
+     if (node->key == k)
+    {
+        return  node->data;
+    }
  
     /* first recur on left child */
-    printInorder(node->left);
- 
-    /* then print the data of node */
-    cout << node->data << " ";
- 
+    findNode(node->left, k); 
     /* now recur on right child */
-    printInorder(node->right);
+    findNode(node->right, k);
 }
  
 int main()
@@ -123,7 +126,7 @@ int main()
     root->right = new Node(3, 16);
     cout << "\n";
 
-   printInorder(root);
+   cout << findNode(root, 3);
 
     return 0;
 }
