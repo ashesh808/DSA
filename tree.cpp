@@ -119,8 +119,6 @@ int main()
 {
     // Creating new nodes
     Node *root = new Node(1, 9);
-    
-
     // Adding nodes as children
     root->left =  new Node(2, 10);
     root->right = new Node(3, 16);
