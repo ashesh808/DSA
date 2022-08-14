@@ -103,14 +103,13 @@ int findNode(Node* node, int k)
     {
         return  -1;
     }
-
+  /* first recur on left child */
+    findNode(node->left, k); 
+    
      if (node->key == k)
     {
         return  node->data;
     }
- 
-    /* first recur on left child */
-    findNode(node->left, k); 
     /* now recur on right child */
     findNode(node->right, k);
 }
@@ -124,7 +123,7 @@ int main()
     root->right = new Node(3, 16);
     cout << "\n";
 
-   cout << findNode(root, 3);
+   cout << findNode(root, 2);
 
     return 0;
 }
