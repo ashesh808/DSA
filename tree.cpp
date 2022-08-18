@@ -103,7 +103,6 @@ int findNode(Node* node, int k)
     {
         return  -1;
     }
-  /* first recur on left child */
     findNode(node->left, k); 
     
      if (node->key == k)
