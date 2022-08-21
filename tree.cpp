@@ -122,6 +122,7 @@ int main()
     root->right = new Node(3, 16);
     cout << "\n";
 
+    //printing the value of the node with the key 2
    cout << findNode(root, 2);
 
     return 0;
