@@ -53,6 +53,7 @@ public:
     void print();
 };
 
+//Default constructor
 Tree::Tree()
 {
     root = NULL;
